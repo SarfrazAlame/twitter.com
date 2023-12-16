@@ -17,7 +17,7 @@ const Model: React.FC<ModelPops> = ({ isOpen, onClose, onSubmit, title, body, fo
 
     const handleClose = useCallback(() => {
         if (disable) {
-            return
+            return;
         }
         onClose()
     }, [disable, onClose])
@@ -47,8 +47,8 @@ const Model: React.FC<ModelPops> = ({ isOpen, onClose, onSubmit, title, body, fo
                                 <AiOutlineClose size={20} />
                             </button>
                         </div>
-                        {/* body */}
                         <div className='flex flex-col gap-2 p-10'>
+                            {body}
                             <Button disable={disable} label={actionlabel} secondary fullWidth large onClick={handleSubmit} />
                             {footer}
                         </div>
