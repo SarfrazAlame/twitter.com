@@ -3,6 +3,9 @@ import Input from '../Input'
 import Model from '../Model'
 import useLoginModel from '@/hooks/useLoginModel'
 import useRegisterModel from '@/hooks/useRegisterModel'
+import axios from 'axios'
+import toast from 'react-hot-toast'
+import { signIn } from 'next-auth/react'
 
 const RegisterModel = () => {
     const loginmodel = useLoginModel()
@@ -28,15 +31,28 @@ const RegisterModel = () => {
         try {
             setIsLoading(true)
 
-            // /todo  and register login here
+            await axios.post('/api/register', {
+                email,
+                password,
+                username,
+                name
+            })
+
+            toast.success('Account created')
+
+            signIn('credentials',{
+                email,
+                password
+            })
 
             registemodel.onClose()
         } catch (error) {
             console.log(error)
+            toast.error('Something went wrong')
         } finally {
             setIsLoading(false)
         }
-    }, [registemodel])
+    }, [registemodel, email, password, name, username])
 
     const bodyContent = (
         <div className='flex flex-col gap-4 mb-4'>
