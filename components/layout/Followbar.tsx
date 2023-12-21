@@ -1,6 +1,6 @@
-import React from 'react'
 
 const Followbar = () => {
+     
     return (
         <div className='px-6 py-4 hidden lg:block'>
             <div className=' bg-neutral-800 rounded-xl p-4'>
